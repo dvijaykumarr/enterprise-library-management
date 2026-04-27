@@ -7,31 +7,46 @@ import java.util.stream.Collectors;
 
 public class GenreMapper {
 
-    public static GenreDTO toDto(Genre savedGenre){
-        if(savedGenre == null){
-            return null;
-        }
+    public static GenreDTO toDto(Genre genre) {
+        if (genre == null) return null;
 
         GenreDTO dto = GenreDTO.builder()
-                .id(savedGenre.getId())
-                .code(savedGenre.getCode())
-                .name(savedGenre.getName())
-                .description(savedGenre.getDescription())
-                .active(savedGenre.getActive())
-                .createdAt(savedGenre.getCreatedAt())
-                .updatedAt(savedGenre.getUpdatedAt())
+                .id(genre.getId())
+                .code(genre.getCode())
+                .name(genre.getName())
+                .description(genre.getDescription())
+                .displayOrder(genre.getDisplayOrder())
+                .active(genre.getActive())
+                .createdAt(genre.getCreatedAt())
+                .updatedAt(genre.getUpdatedAt())
                 .build();
-        if(savedGenre.getParentGenre() != null){
-            dto.setParentGenreId(savedGenre.getParentGenre().getId());
-            dto.setParentGenreName(savedGenre.getParentGenre().getName());
+
+        if (genre.getParentGenre() != null) {
+            dto.setParentGenreId(genre.getParentGenre().getId());
+            dto.setParentGenreName(genre.getParentGenre().getName());
         }
 
-        dto.setSubGenre(savedGenre.getSubGenres().stream()
-                .filter(subGenre -> subGenre.getActive())
-                .map(subGenre -> toDto(subGenre)).collect(Collectors.toList()));
-
+        if (genre.getSubGenres() != null && !genre.getSubGenres().isEmpty()) {
+            dto.setSubGenre(genre.getSubGenres().stream()
+                    .filter(sub -> Boolean.TRUE.equals(sub.getActive()))
+                    .map(GenreMapper::toDto)
+                    .collect(Collectors.toList()));
+        }
 
         return dto;
+    }
 
+    public static Genre toEntity(GenreDTO dto) {
+        if (dto == null) return null;
+
+        return Genre.builder()
+                .id(dto.getId())
+                .code(dto.getCode())
+                .name(dto.getName())
+                .description(dto.getDescription())
+                .displayOrder(dto.getDisplayOrder())
+                .active(dto.getActive() != null ? dto.getActive() : true)
+                .build();
+        // Note: parentGenre is handled in the service layer
     }
 }

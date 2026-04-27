@@ -20,7 +20,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@RequiredArgsConstructor
 public class Genre {
 
     @Id
@@ -66,26 +65,4 @@ public class Genre {
 //     |__Cozy Mystery
 //  |__Fantasy
 //  |__Drama
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

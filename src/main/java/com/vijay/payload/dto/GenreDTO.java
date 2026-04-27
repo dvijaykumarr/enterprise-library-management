@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@RequiredArgsConstructor
 public class GenreDTO {
 
     private Long id;
@@ -33,6 +32,9 @@ public class GenreDTO {
     private Boolean active;
 
     private Long parentGenreId;
+
+    private String parentGenreName;
+
 
     private List<GenreDTO> subGenre;
 
