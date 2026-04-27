@@ -7,14 +7,13 @@ import com.vijay.service.GenreService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/genre")
+@RequestMapping("/api/genres")
 public class GenreController {
 
     private final GenreService genreService;
@@ -24,4 +23,12 @@ public class GenreController {
         GenreDTO createdGenre = genreService.createGenre(genreDTO);
         return ResponseEntity.ok(createdGenre);
     }
+
+    @GetMapping()
+    public ResponseEntity<?> getAllGenres() {
+        List<GenreDTO> genres = genreService.getAllGenres();
+        return ResponseEntity.ok(genres);
+    }
+
+
 }

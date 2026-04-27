@@ -5,6 +5,7 @@ import com.vijay.payload.dto.GenreDTO;
 
 import java.util.stream.Collectors;
 
+
 public class GenreMapper {
 
     public static GenreDTO toDto(Genre genre) {
@@ -48,5 +49,12 @@ public class GenreMapper {
                 .active(dto.getActive() != null ? dto.getActive() : true)
                 .build();
         // Note: parentGenre is handled in the service layer
+        // we can handle this parent genre in mapper but
+//      Problems with this is:
+//
+//        Mapper gets a repository dependency — mappers should be dumb, just converting fields
+//        Violates Single Responsibility Principle — mapper's job is mapping, not fetching from DB
+//        Harder to test — you'd need to mock the repository in mapper tests
+//        Breaks the pattern — other devs won't expect DB calls inside a mapper
     }
 }
