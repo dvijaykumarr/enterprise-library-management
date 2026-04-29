@@ -1,5 +1,6 @@
 package com.vijay.service.impl;
 
+import com.vijay.exception.GenreException;
 import com.vijay.mapper.GenreMapper;
 import com.vijay.modal.Genre;
 import com.vijay.payload.dto.GenreDTO;
@@ -41,38 +42,77 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public GenreDTO getGenreById(Long genreId) {
-        return null;
+    public GenreDTO getGenreById(Long genreId) throws Exception {
+        Genre genre = genreRepository.findById(genreId).orElseThrow(
+                ()->new GenreException("genre not found")
+        );
+        return GenreMapper.toDto(genre);
     }
 
     @Override
-    public GenreDTO updateGenre(Long genreId, GenreDTO genre) {
-        return null;
+    public GenreDTO updateGenre(Long genreId, GenreDTO genreDTO) throws GenreException {
+        Genre existingGenre = genreRepository.findById(genreId)
+                .orElseThrow(() -> new GenreException("Genre not found with id: " + genreId));
+
+        // just set fields directly here - no need for mapper method
+        existingGenre.setCode(genreDTO.getCode());
+        existingGenre.setName(genreDTO.getName());
+        existingGenre.setDescription(genreDTO.getDescription());
+        existingGenre.setDisplayOrder(genreDTO.getDisplayOrder() != null ? genreDTO.getDisplayOrder() : 0);
+        existingGenre.setActive(genreDTO.getActive() != null ? genreDTO.getActive() : existingGenre.getActive());
+
+        // parent genre handled here in service
+        if (genreDTO.getParentGenreId() != null) {
+            Genre parentGenre = genreRepository.findById(genreDTO.getParentGenreId())
+                    .orElseThrow(() -> new GenreException("Parent genre not found"));
+            existingGenre.setParentGenre(parentGenre);
+        } else {
+            existingGenre.setParentGenre(null);
+        }
+
+        return GenreMapper.toDto(genreRepository.save(existingGenre));
+
     }
 
     @Override
-    public void deleteGenre(Long genreId) {
+    public void deleteGenre(Long genreId) throws GenreException {
+        Genre existingGenre = genreRepository.findById(genreId).orElseThrow(
+                () -> new GenreException("Genre not found with id: " + genreId)
+        );
+        existingGenre.setActive(false);
+        genreRepository.save(existingGenre);
 
     }
 
     @Override
-    public void hardDeleteGenre(Long genreId) {
+    public void hardDeleteGenre(Long genreId) throws GenreException {
+        Genre existingGenre = genreRepository.findById(genreId).orElseThrow(
+                () -> new GenreException("Genre not found with id: " + genreId)
+        );
+        genreRepository.delete(existingGenre);
 
     }
 
     @Override
     public List<GenreDTO> getAllActiveGenresWithSubGenres() {
-        return List.of();
+
+        return genreRepository.findByActiveTrueOrderByDisplayOrderAsc()
+                .stream()
+                .map(GenreMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<GenreDTO> getTopLevelGenres() {
-        return List.of();
+        return genreRepository.findByParentGenreIsNullAndActiveTrueOrderByDisplayOrderAsc()
+                .stream()
+                .map(GenreMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public long getTotalActiveGenres() {
-        return 0;
+        return genreRepository.countByActiveTrue();
     }
 
     @Override

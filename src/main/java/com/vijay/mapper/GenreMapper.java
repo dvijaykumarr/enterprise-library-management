@@ -57,4 +57,5 @@ public class GenreMapper {
 //        Harder to test — you'd need to mock the repository in mapper tests
 //        Breaks the pattern — other devs won't expect DB calls inside a mapper
     }
+
 }

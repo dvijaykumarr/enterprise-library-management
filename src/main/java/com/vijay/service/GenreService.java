@@ -1,6 +1,7 @@
 package com.vijay.service;
 
 
+import com.vijay.exception.GenreException;
 import com.vijay.modal.Genre;
 import com.vijay.payload.dto.GenreDTO;
 import org.springframework.data.domain.Page;
@@ -14,13 +15,13 @@ public interface GenreService {
 
     List<GenreDTO> getAllGenres();
 
-    GenreDTO getGenreById(Long genreId);
+    GenreDTO getGenreById(Long genreId) throws Exception;
 
-    GenreDTO updateGenre(Long genreId, GenreDTO genre);
+    GenreDTO updateGenre(Long genreId, GenreDTO genre) throws GenreException;
 
-    void deleteGenre(Long genreId);
+    void deleteGenre(Long genreId) throws GenreException;
 
-    void hardDeleteGenre(Long genreId);
+    void hardDeleteGenre(Long genreId) throws GenreException;
 
     List<GenreDTO> getAllActiveGenresWithSubGenres();
 
