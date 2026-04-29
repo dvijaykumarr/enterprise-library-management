@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/genres")
@@ -25,56 +26,58 @@ public class GenreController {
         return ResponseEntity.ok(createdGenre);
     }
 
-    @GetMapping()
-    public ResponseEntity<?> getAllGenres() {
+    @GetMapping
+    public ResponseEntity<List<GenreDTO>> getAllGenres() {
         List<GenreDTO> genres = genreService.getAllGenres();
         return ResponseEntity.ok(genres);
     }
 
     @GetMapping("/{genreId}")
-    public ResponseEntity<?> getGenreById(@RequestParam("genreId") Long genreId) throws Exception {
-        GenreDTO genres = genreService.getGenreById(genreId);
-        return ResponseEntity.ok(genres);
+    public ResponseEntity<GenreDTO> getGenreById(@PathVariable Long genreId) throws Exception { // CHANGED: @PathVariable("genreId") → @PathVariable
+        GenreDTO genre = genreService.getGenreById(genreId);
+        return ResponseEntity.ok(genre);
     }
 
     @PutMapping("/{genreId}")
-    public ResponseEntity<?> updateGenre(@RequestParam("genreId") Long genreId,
-                                         @RequestBody GenreDTO genre) throws Exception {
-        GenreDTO genres = genreService.updateGenre(genreId,genre);
-        return ResponseEntity.ok(genres);
+    public ResponseEntity<GenreDTO> updateGenre(@PathVariable Long genreId, // CHANGED: @PathVariable("genreId") → @PathVariable
+                                                @RequestBody @Valid GenreDTO genreDTO) throws Exception {
+        GenreDTO updatedGenre = genreService.updateGenre(genreId, genreDTO);
+        return ResponseEntity.ok(updatedGenre);
     }
 
     @DeleteMapping("/{genreId}")
-    public ResponseEntity<?> deleteGenre(@RequestParam("genreId") Long genreId) throws Exception {
+    public ResponseEntity<ApiResponse> deleteGenre(@PathVariable Long genreId) throws Exception { // CHANGED: @PathVariable("genreId") → @PathVariable
         genreService.deleteGenre(genreId);
-        ApiResponse apiResponse = new ApiResponse("genre deleted - soft delete", true);
-        return ResponseEntity.ok(apiResponse);
+        return ResponseEntity.ok(new ApiResponse("Genre soft deleted successfully", true));
     }
 
-    @DeleteMapping("/{genreId}/hardDelete")
-    public ResponseEntity<?> hardDeleteGenre(@RequestParam("genreId") Long genreId) throws Exception {
+    @DeleteMapping("/{genreId}/hard-delete")
+    public ResponseEntity<ApiResponse> hardDeleteGenre(@PathVariable Long genreId) throws Exception { // CHANGED: @PathVariable("genreId") → @PathVariable
         genreService.hardDeleteGenre(genreId);
-        ApiResponse apiResponse = new ApiResponse("genre deleted - Hard delete", true);
-        return ResponseEntity.ok(apiResponse);
+        return ResponseEntity.ok(new ApiResponse("Genre permanently deleted", true));
     }
 
     @GetMapping("/top-level")
-    public ResponseEntity<?> getTopLevelGenres() {
+    public ResponseEntity<List<GenreDTO>> getTopLevelGenres() {
         List<GenreDTO> genres = genreService.getTopLevelGenres();
         return ResponseEntity.ok(genres);
     }
 
-    @GetMapping("/count")
-    public ResponseEntity<?> getTotalActiveGenre() {
-        Long genres = genreService.getTotalActiveGenres();
+    @GetMapping("/active")
+    public ResponseEntity<List<GenreDTO>> getAllActiveGenresWithSubGenres() {
+        List<GenreDTO> genres = genreService.getAllActiveGenresWithSubGenres();
         return ResponseEntity.ok(genres);
     }
 
-    @GetMapping("/{id}/book-count")
-    public ResponseEntity<?> getBookCountByGenre(@PathVariable Long id) {
-
-        Long count = genreService.getBookCountByGenre(id);
+    @GetMapping("/count")
+    public ResponseEntity<Long> getTotalActiveGenres() {
+        long count = genreService.getTotalActiveGenres();
         return ResponseEntity.ok(count);
     }
 
+    @GetMapping("/{id}/book-count")
+    public ResponseEntity<Long> getBookCountByGenre(@PathVariable Long id) {
+        long count = genreService.getBookCountByGenre(id);
+        return ResponseEntity.ok(count);
+    }
 }
