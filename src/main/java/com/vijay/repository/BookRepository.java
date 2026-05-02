@@ -20,11 +20,12 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     //prog ani kodthe - it will match this and returns the book
 
     //progies ani kodthe - idhi sequence ledu aa book title lo so it will return false(it will not return book)
+    // ✅ Correct - group all search term conditions together
     @Query("SELECT b FROM Book b WHERE " +
             "(:searchTerm IS NULL OR " +
-            "lower(b.title) LIKE lower(concat('%', :searchTerm, '%'))) OR " +
+            "lower(b.title) LIKE lower(concat('%', :searchTerm, '%')) OR " +
             "lower(b.author) LIKE lower(concat('%', :searchTerm, '%')) OR " +
-            "lower(b.isbn) LIKE lower(concat('%', :searchTerm, '%')) OR "+
+            "lower(b.isbn) LIKE lower(concat('%', :searchTerm, '%'))) AND " +  // ← close bracket here
             "(:genreId IS NULL OR b.genre.id = :genreId) AND " +
             "(:availableOnly = false OR b.availableCopies > 0) AND " +
             "b.active = true"

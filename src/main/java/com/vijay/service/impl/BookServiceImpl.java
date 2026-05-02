@@ -38,13 +38,21 @@ public class BookServiceImpl implements BookService {
         }
 
         Book book = BookMapper.toEntity(bookDTO);
+        if (bookDTO.getGenreId() != null) {
+            Genre genre = genreRepository.findById(bookDTO.getGenreId())
+                    .orElseThrow(() -> new BookException("Genre not found with id: " + bookDTO.getGenreId()));
+            book.setGenre(genre);
+        }
 
         // what if user provides
         // total - 10
         // available - 11
         // so we should restrict user not to do this
 
-        book.isAvailableCopiesValid();
+        // ✅ Correct - check the result and throw exception
+        if (!book.isAvailableCopiesValid()) {
+            throw new BookException("Available copies cannot exceed total copies");
+        }
 
         Book savedBook = bookRepository.save(book);
 

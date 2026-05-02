@@ -16,4 +16,11 @@ public class GlobalException {
                 .body(new ApiResponse(e.getMessage(),false));
     }
 
+
+    @ExceptionHandler(BookException.class)
+    public ResponseEntity<ApiResponse> handleBookException(BookException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiResponse(e.getMessage(), false));
+    }
+
 }
