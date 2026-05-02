@@ -73,6 +73,29 @@ public class BookController {
         return ResponseEntity.ok(new ApiResponse("Book Hard deleted successfully", true));
     }
 
+    @GetMapping
+    public ResponseEntity<PageResponse<BookDTO>> searchBooks(
+            @RequestParam(required = false) String searchTerm,
+            @RequestParam(required = false) Long genreId,
+            @RequestParam(required = false, defaultValue = "false") Boolean availableOnly,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size,
+            @RequestParam(defaultValue = "createdAt") String sortBy,
+            @RequestParam(defaultValue = "DESC") String sortDirection) {
+
+        // build search request from query params
+        BookSearchRequest searchRequest = new BookSearchRequest();
+        searchRequest.setSearchTerm(searchTerm);
+        searchRequest.setGenreId(genreId);
+        searchRequest.setAvailableOnly(availableOnly);
+        searchRequest.setPage(page);
+        searchRequest.setSize(size);
+        searchRequest.setSortBy(sortBy);
+        searchRequest.setSortDirection(sortDirection);
+
+        PageResponse<BookDTO> books = bookService.searchBookWithFilters(searchRequest);
+        return ResponseEntity.ok(books);
+    }
     @PostMapping("/search")
     public ResponseEntity<PageResponse<BookDTO>> advancedSearch(@RequestBody BookSearchRequest searchRequest){
 
