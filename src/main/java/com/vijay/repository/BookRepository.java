@@ -15,8 +15,16 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     Optional<Book> findByIsbn(String isbn);
     boolean existsByIsbn(String isbn);
 
+
+    // book - java programming
+    //prog ani kodthe - it will match this and returns the book
+
+    //progies ani kodthe - idhi sequence ledu aa book title lo so it will return false(it will not return book)
     @Query("SELECT b FROM Book b WHERE " +
-            "(:searchTerm IS NULL OR lower(b.title) LIKE lower(concat('%', :searchTerm, '%'))) AND " +
+            "(:searchTerm IS NULL OR " +
+            "lower(b.title) LIKE lower(concat('%', :searchTerm, '%'))) OR " +
+            "lower(b.author) LIKE lower(concat('%', :searchTerm, '%')) OR " +
+            "lower(b.isbn) LIKE lower(concat('%', :searchTerm, '%')) OR "+
             "(:genreId IS NULL OR b.genre.id = :genreId) AND " +
             "(:availableOnly = false OR b.availableCopies > 0) AND " +
             "b.active = true"
@@ -27,5 +35,10 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             @Param("availableOnly") boolean availableOnly,
             Pageable pageable
     );
+
+    long countByActiveTrue();
+
+    @Query("SELECT count(b) FROM Book b WHERE b.availableCopies>0 AND b.active=true")
+    long countAvailableBooks();
 
 }

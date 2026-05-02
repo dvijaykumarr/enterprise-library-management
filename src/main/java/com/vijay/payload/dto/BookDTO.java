@@ -36,6 +36,8 @@ public class BookDTO {
     @Size(max = 100, message = "Publisher must be between 1 and 100 characters")
     private String publisher;
 
+    private Boolean active;     // added this field in dto
+
     private LocalDate publicationDate;
 
     @Size(max = 25, message = "Language must not exceed 25 characters")
