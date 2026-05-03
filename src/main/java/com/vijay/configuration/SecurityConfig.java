@@ -26,9 +26,10 @@ public class SecurityConfig {
                 .sessionManagement(management->management.sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS
                 ))
-                .authorizeHttpRequests(Authorize->Authorize
-                        .requestMatchers("/api/**").authenticated()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/auth/**").permitAll()       // FIXED: auth endpoints public
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN") // FIXED: specific rules first
+                        .requestMatchers("/api/**").authenticated()         // FIXED: general rules last
                         .anyRequest().permitAll()
                 )
                 .addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
