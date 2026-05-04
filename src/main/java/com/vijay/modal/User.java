@@ -1,5 +1,7 @@
 package com.vijay.modal;
 
+import com.vijay.domain.AuthProvider;
+import com.vijay.domain.UserRole;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -24,5 +30,23 @@ public class User {
 
     private String fullName;
 
-    private String role;
+    private UserRole role;
+
+    private String phone;
+
+    private AuthProvider authProvider=AuthProvider.LOCAL;
+
+    private String googleId;
+
+    private String profileImage;
+
+    private String password;
+
+    private LocalDateTime lastLogin;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }
