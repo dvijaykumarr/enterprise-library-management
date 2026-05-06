@@ -6,8 +6,8 @@ import com.vijay.payload.response.AuthResponse;
 
 public interface AuthService {
 
-    AuthResponse login(String username, String password);
+    AuthResponse login(String username, String password) throws UserException;
     AuthResponse signUp(UserDto req) throws UserException;
-    void createPasswordResetToken(String email);
+    void createPasswordResetToken(String email) throws UserException;
     void resetPassword(String token, String newPassword);
 }
