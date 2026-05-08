@@ -1,0 +1,69 @@
+$kind: http-request
+url: http://localhost:8080/api/books/bulk
+method: POST
+body:
+  type: json
+  content: "[\r
+
+    \  {\r
+
+    \    \"isbn\": \"978-0-20-163361-0\",\r
+
+    \    \"title\": \"Design Patterns\",\r
+
+    \    \"author\": \"Gang of Four\",\r
+
+    \    \"genreId\": 1,\r
+
+    \    \"publisher\": \"Addison-Wesley\",\r
+
+    \    \"publicationDate\": \"1994-10-21\",\r
+
+    \    \"language\": \"English\",\r
+
+    \    \"pages\": 395,\r
+
+    \    \"description\": \"Elements of reusable object-oriented software\",\r
+
+    \    \"totalCopies\": 8,\r
+
+    \    \"availableCopies\": 8,\r
+
+    \    \"price\": 599.99,\r
+
+    \    \"active\": true\r
+
+    \  },\r
+
+    \  {\r
+
+    \    \"isbn\": \"978-0-59-651798-1\",\r
+
+    \    \"title\": \"JavaScript: The Good Parts\",\r
+
+    \    \"author\": \"Douglas Crockford\",\r
+
+    \    \"genreId\": 1,\r
+
+    \    \"publisher\": \"O'Reilly Media\",\r
+
+    \    \"publicationDate\": \"2008-05-01\",\r
+
+    \    \"language\": \"English\",\r
+
+    \    \"pages\": 176,\r
+
+    \    \"description\": \"Unearthing the excellence in JavaScript\",\r
+
+    \    \"totalCopies\": 6,\r
+
+    \    \"availableCopies\": 6,\r
+
+    \    \"price\": 299.99,\r
+
+    \    \"active\": true\r
+
+    \  }\r
+
+    ]"
+order: 2000

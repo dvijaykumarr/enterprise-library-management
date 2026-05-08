@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://localhost:8080/api/books/isbn/978-0-13-468599-1
+method: GET
+order: 4000

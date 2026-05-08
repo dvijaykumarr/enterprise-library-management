@@ -1,0 +1,11 @@
+$kind: http-request
+url: http://localhost:5000/api/refunds/cashier/352/range?startDate=2026-02-01T00:00:00&endDate=2026-02-28T23:59:59
+method: GET
+queryParams:
+  startDate: 2026-02-01T00:00:00
+  endDate: 2026-02-28T23:59:59
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzIxMjU0MzAsImV4cCI6MTc3MjIxMTgzMCwiZW1haWwiOiJqYW5lLmRvZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfQlJBTkNIX0NBU0hJRVIifQ.1CpXXgbknagVnhFydmHXpPvnOWP3WqzgRYDsh7e7FuMOfX87XpA1mFoQGQiuUPWE
+order: 6000

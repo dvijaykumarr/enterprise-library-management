@@ -1,0 +1,19 @@
+$kind: http-request
+url: http://localhost:5000/api/inventories
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"branchId\": 1,\r
+
+    \    \"productId\": 1,\r
+
+    \    \"quantity\": 50\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzE2NTY3NDksImV4cCI6MTc3MTc0MzE0OSwiZW1haWwiOiJzdG9yZWFkbWluNUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.lhdpcfEIaNH6ZIpOnAJsdFeGlkt9-kFUTgOGUWhIGoRLuuzrY-dkBofkIZ3y7bNu
+order: 1000

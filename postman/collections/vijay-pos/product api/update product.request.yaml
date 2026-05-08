@@ -1,0 +1,38 @@
+$kind: http-request
+url: http://localhost:5000/api/products/1
+method: PATCH
+headers:
+  - key: Authorization
+    value: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzEzMzYyMTYsImV4cCI6MTc3MTQyMjYxNiwiZW1haWwiOiJzdG9yZWFkbWluM0BnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.ukykwV6v2Kl0gPGN8MwGLEz_YGvhF6LVhkgW-nEwxT_hZLuAt-xYNV_2fmrDUVyp
+    disabled: true
+  - key: ""
+    value: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzEzMzYyMTYsImV4cCI6MTc3MTQyMjYxNiwiZW1haWwiOiJzdG9yZWFkbWluM0BnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.ukykwV6v2Kl0gPGN8MwGLEz_YGvhF6LVhkgW-nEwxT_hZLuAt-xYNV_2fmrDUVyp
+    disabled: true
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"iPhone 15\",\r
+
+    \    \"sku\": \"IPH15-001\",\r
+
+    \    \"description\": \"Apple iPhone 15 128GB\",\r
+
+    \    \"mrp\": 90000.00,\r
+
+    \    \"sellingPrice\": 74999.00,\r
+
+    \    \"brand\": \"Apple\",\r
+
+    \    \"image\": \"https://example.com/iphone15.jpg\",\r
+
+    \    \"categoryId\": 1,\r
+
+    \    \"storeId\": 52\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzE1MjA0MjgsImV4cCI6MTc3MTYwNjgyOCwiZW1haWwiOiJzdG9yZWFkbWluNUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.cvRV9rHy-dIEOVfds6SqDVqhWYVxme3kJTg4u_skD5TINkQBwv9vKG8C5P-7-J8w
+order: 2000

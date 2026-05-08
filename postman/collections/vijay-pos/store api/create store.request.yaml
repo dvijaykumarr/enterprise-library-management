@@ -1,0 +1,31 @@
+$kind: http-request
+url: http://localhost:5000/api/stores
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \r
+
+    \    \"brand\" : \"Star Bucks\",\r
+
+    \    \"storeType\" : \"Coffe store\",\r
+
+    \    \"storeContact\" :{\r
+
+    \        \"address\" : \"MG road\",\r
+
+    \        \"email\" : \"starbucks@gmail.com\",\r
+
+    \        \"phone\" : \"11111111111\"\r
+
+    \    },\r
+
+    \    \"description\" : \"coffe shop\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzEzOTI2NzEsImV4cCI6MTc3MTQ3OTA3MSwiZW1haWwiOiJzdG9yZWFkbWluNUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.ROFaSa_rdsb29trex4t81OWxI__N-g3jTZuepoVAazqE1DQ19uUv0LIDInAS3H3p
+order: 1000

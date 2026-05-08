@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://localhost:8080/api/books/4/hard-delete
+method: DELETE
+order: 7000

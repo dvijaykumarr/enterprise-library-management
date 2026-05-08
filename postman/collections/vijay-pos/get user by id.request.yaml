@@ -1,0 +1,8 @@
+$kind: http-request
+url: http://localhost:5000/api/users/3
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzA0ODAyMjIsImV4cCI6MTc3MDU2NjYyMiwiZW1haWwiOiJ2aWpheUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfTUFOQUdFUiJ9.U-QOgx_3Rcr0Sq1wW_-wcTXX2OqpT8YLoOGmZCqYpFrMnLREYBTQwafdfcuS_sri
+order: 12000

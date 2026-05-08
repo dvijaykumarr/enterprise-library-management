@@ -1,0 +1,21 @@
+$kind: http-request
+url: http://localhost:8080/api/genres/1
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"code\": \"FICTION\",\r
+
+    \  \"name\": \"Fiction Updated\",\r
+
+    \  \"description\": \"Updated description for fiction genre\",\r
+
+    \  \"displayOrder\": 1,\r
+
+    \  \"active\": true,\r
+
+    \  \"parentGenreId\": null\r
+
+    }"
+order: 4000

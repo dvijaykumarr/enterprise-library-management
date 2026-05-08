@@ -1,0 +1,8 @@
+$kind: http-request
+url: http://localhost:5000/api/shift-reports/current
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzI0NzQxNDIsImV4cCI6MTc3MjU2MDU0MiwiZW1haWwiOiJqYW5lLmRvZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfQlJBTkNIX0NBU0hJRVIifQ.JZikKqXvKAwZ-e5BiQocAaiw9NtaHlUKO7lC0RIqaQ_oJsdYJMige11CJCfLwbE-
+order: 3000

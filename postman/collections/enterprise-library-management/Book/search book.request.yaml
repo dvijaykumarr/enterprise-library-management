@@ -1,0 +1,6 @@
+$kind: http-request
+url: http://localhost:8080/api/books?searchTerm=Andrew
+method: GET
+queryParams:
+  searchTerm: Andrew
+order: 10000

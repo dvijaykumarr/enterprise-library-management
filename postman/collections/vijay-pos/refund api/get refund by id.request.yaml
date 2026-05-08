@@ -1,0 +1,8 @@
+$kind: http-request
+url: http://localhost:5000/api/refunds/1
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzIxMjU0MzAsImV4cCI6MTc3MjIxMTgzMCwiZW1haWwiOiJqYW5lLmRvZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfQlJBTkNIX0NBU0hJRVIifQ.1CpXXgbknagVnhFydmHXpPvnOWP3WqzgRYDsh7e7FuMOfX87XpA1mFoQGQiuUPWE
+order: 3000

@@ -1,0 +1,23 @@
+$kind: http-request
+url: http://localhost:5000/api/employees/302
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"fullName\": \"John Doe Updated\",\r
+
+    \    \"email\": \"john.doe@gmail.com\",\r
+
+    \    \"phone\": \"9876543222\",\r
+
+    \    \"role\": \"ROLE_STORE_MANAGER\",\r
+
+    \    \"branchId\": 1\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzE4MzQxODMsImV4cCI6MTc3MTkyMDU4MywiZW1haWwiOiJzdG9yZWFkbWluNUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.7UsbHK_v_9rUQ919OPMu8WzmNH2h6EFvZL5AwjlNgPH48TPTDR69ohSmNXNXUlrA
+order: 3000

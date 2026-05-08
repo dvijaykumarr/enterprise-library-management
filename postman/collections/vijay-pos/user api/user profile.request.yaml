@@ -1,0 +1,11 @@
+$kind: http-request
+url: http://localhost:5000/api/users/profile
+method: GET
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: yJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzE1MjYzMDMsImV4cCI6MTc3MTYxMjcwMywiZW1haWwiOiJzdG9yZWFkbWluNUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.wcdMmoXNkdkew3lmqgo3QnHll_YS7oPIzuPCWbR7oHFsnrlT3ET043J7N-MpSfDs
+order: 3000

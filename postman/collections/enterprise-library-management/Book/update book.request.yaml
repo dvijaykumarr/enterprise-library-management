@@ -1,0 +1,35 @@
+$kind: http-request
+url: http://localhost:8080/api/books/1
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"isbn\": \"978-0-13-468599-1\",\r
+
+    \  \"title\": \"Clean Code Updated Edition\",\r
+
+    \  \"author\": \"Robert C. Martin\",\r
+
+    \  \"genreId\": 1,\r
+
+    \  \"publisher\": \"Prentice Hall\",\r
+
+    \  \"publicationDate\": \"2008-08-01\",\r
+
+    \  \"language\": \"English\",\r
+
+    \  \"pages\": 431,\r
+
+    \  \"description\": \"Updated description for clean code\",\r
+
+    \  \"totalCopies\": 15,\r
+
+    \  \"availableCopies\": 12,\r
+
+    \  \"price\": 549.99,\r
+
+    \  \"active\": true\r
+
+    }"
+order: 5000

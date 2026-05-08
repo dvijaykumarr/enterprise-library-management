@@ -1,0 +1,16 @@
+workspace:
+  id: df4729e8-a5c4-41f5-8fd9-3bfd1822220f
+localResources:
+  collections:
+    - ../postman/collections/enterprise-library-management
+    - ../postman/collections/New Collection
+    - ../postman/collections/vijay-pos
+    - ../postman/collections/student-management-system
+    - ../postman/collections/cloud-share
+cloudResources:
+  collections:
+    ../postman/collections/enterprise-library-management: 50899890-8dd3bff8-c0de-435c-878c-e95469c4516b
+    ../postman/collections/New Collection: 50899890-69377bdd-46c4-4a49-9c8b-46b4460c3654
+    ../postman/collections/vijay-pos: 50899890-7bafebdf-c915-4eba-81a3-0a1666280e1c
+    ../postman/collections/student-management-system: 50899890-e7763800-7f04-496a-854d-337a9825139e
+    ../postman/collections/cloud-share: 50899890-eaf7a57f-ce97-435e-a295-d2c28d2e8b9f

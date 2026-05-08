@@ -1,0 +1,25 @@
+$kind: http-request
+url: http://localhost:8080/api/genres
+method: GET
+body:
+  type: text
+  content: "{\r
+
+    \  \"code\": \"MURDER_MYSTERY\",\r
+
+    \  \"name\": \"MURDER Mystery\",\r
+
+    \  \"description\": \"bLOOD shed murder mystery\",\r
+
+    \  \"displayOrder\": 3,\r
+
+    \  \"active\": true,\r
+
+    \  \"parentGenreId\": 2\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: yJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzE1MjYzMDMsImV4cCI6MTc3MTYxMjcwMywiZW1haWwiOiJzdG9yZWFkbWluNUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.wcdMmoXNkdkew3lmqgo3QnHll_YS7oPIzuPCWbR7oHFsnrlT3ET043J7N-MpSfDs
+order: 2000

@@ -1,0 +1,10 @@
+$kind: http-request
+url: http://localhost:5000/api/orders/branch/1?customerId=1
+method: GET
+queryParams:
+  customerId: "1"
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzIwMTA3NjMsImV4cCI6MTc3MjA5NzE2MywiZW1haWwiOiJqYW5lLmRvZUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfQlJBTkNIX0NBU0hJRVIifQ.AvlDBfy2V1VgTC6xHEtVDLsOV2RmS6hzYnN3QlkrEKI4ei4O2bX1kpjwrlssOpuu
+order: 8000

@@ -1,0 +1,19 @@
+$kind: http-request
+url: http://localhost:8080/api/v1.0/register
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"clerkId\" : \"clerk456\",\r
+
+    \    \"email\" : \"c.rajashekar@gmail.com\",\r
+
+    \    \"firstName\" : \"C Raja\",\r
+
+    \    \"lastName\" : \"Shekar Reddy\",\r
+
+    \    \"photoUrl\" : \"image -2\"\r
+
+    }"
+order: 1000

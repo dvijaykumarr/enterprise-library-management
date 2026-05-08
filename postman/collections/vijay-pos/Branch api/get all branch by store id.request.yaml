@@ -1,0 +1,19 @@
+$kind: http-request
+url: http://localhost:5000/api/branches/store/52
+method: GET
+body:
+  type: text
+  content: "{\r
+
+    \    \"name\" : \"Vijay Shopping Mall, Nandyal\",\r
+
+    \    \"address\" : \"Padmavati Nagar\",\r
+
+    \    \"workingDays\" : [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\"]\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3NzE1MjY2MjksImV4cCI6MTc3MTYxMzAyOSwiZW1haWwiOiJzdG9yZWFkbWluNUBnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6IlJPTEVfU1RPUkVfQURNSU4ifQ.OQgZyLuMkyj9JnIKOqH3GEb9TAIreDaRRu7XrmtIXkYzSlz3oIvc5yYf5G_9m_o7
+order: 2000

@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://localhost:8080/api/genres/active
+method: GET
+order: 7000

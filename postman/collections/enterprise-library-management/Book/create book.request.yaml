@@ -1,0 +1,37 @@
+$kind: http-request
+url: http://localhost:8080/api/books
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"isbn\": \"978-0-13-235088-4\",\r
+
+    \  \"title\": \"The Pragmatic Programmer\",\r
+
+    \  \"author\": \"Andrew Hunt\",\r
+
+    \  \"genreId\": 1,\r
+
+    \  \"publisher\": \"Addison-Wesley\",\r
+
+    \  \"publicationDate\": \"1999-10-20\",\r
+
+    \  \"language\": \"English\",\r
+
+    \  \"pages\": 352,\r
+
+    \  \"description\": \"Your journey to mastery\",\r
+
+    \  \"totalCopies\": 5,\r
+
+    \  \"availableCopies\": 5,\r
+
+    \  \"price\": 399.99,\r
+
+    \  \"coverImageUrl\": \"https://example.com/pragmatic.jpg\",\r
+
+    \  \"active\": true\r
+
+    }"
+order: 1000

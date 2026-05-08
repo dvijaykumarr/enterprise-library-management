@@ -1,0 +1,12 @@
+$kind: http-request
+name: New Request
+url: http://localhost:3000/updatebook/2
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \  \"title\": \"iShika Book\"\r
+
+    }\r\n"
+order: 3000

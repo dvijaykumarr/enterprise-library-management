@@ -1,0 +1,4 @@
+$kind: http-request
+url: http://localhost:8080/api/genres/3/hard-delete
+method: DELETE
+order: 10000

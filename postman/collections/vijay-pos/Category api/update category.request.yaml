@@ -1,0 +1,15 @@
+$kind: http-request
+url: http://localhost:5000/api/categories/1
+method: PUT
+body:
+  type: json
+  content: "\r
+
+    {\r
+
+    \    \"name\": \"mobiles\"\r
+
+    \    \r
+
+    }"
+order: 3000
