@@ -22,6 +22,13 @@ import java.util.List;
 
 public class JwtValidator extends OncePerRequestFilter {
 
+    // ADDED: skip JWT validation for auth endpoints
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getServletPath();
+        return path.startsWith("/api/auth/");
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
