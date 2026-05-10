@@ -30,7 +30,8 @@ public class SecurityConfig {
                 ))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**").permitAll()       // FIXED: auth endpoints public
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN") // FIXED: specific rules first
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/users/list").hasRole("ADMIN")// FIXED: specific rules first
                         .requestMatchers("/api/**").authenticated()         // FIXED: general rules last
                         .anyRequest().permitAll()
                 )
