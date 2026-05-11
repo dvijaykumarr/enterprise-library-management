@@ -1,6 +1,7 @@
 package com.vijay.controller;
 
 
+import com.vijay.exception.UserException;
 import com.vijay.mapper.UserMapper;
 import com.vijay.modal.User;
 import com.vijay.payload.dto.UserDto;
@@ -29,7 +30,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public ResponseEntity<UserDto> getUserProfile() throws Exception {
-        User user = userService.getCurrentUser();
-        return ResponseEntity.ok(UserMapper.toDTO(user));
+        UserDto user = userService.getCurrentUser(); // ← UserDto not User
+        return ResponseEntity.ok(user);
     }
 }
