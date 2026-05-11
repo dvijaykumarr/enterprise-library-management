@@ -21,6 +21,7 @@ public class SubscriptionPlanImpl implements SubscriptionPlanService {
 
     private final SubscriptionPlanRepository subscriptionPlanRepository;
     private final UserService userService;
+    private final SubscriptionPlanMapper subscriptionPlanMapper;
 
 
     @Override
@@ -42,17 +43,33 @@ public class SubscriptionPlanImpl implements SubscriptionPlanService {
     }
 
     @Override
-    public SubscriptionPlanDTO updateSubscriptionPlan(Long planId, SubscriptionPlanDTO planDTO) {
-        return null;
+    public SubscriptionPlanDTO updateSubscriptionPlan(Long planId, SubscriptionPlanDTO planDTO) throws Exception {
+        SubscriptionPlan existingPlan = subscriptionPlanRepository.findById(planId).orElseThrow(
+                () -> new Exception("Subscription Plan not found")
+        );
+
+        SubscriptionPlanMapper.updateEntityFromDTO(planDTO, existingPlan);
+        UserDto currentUser = userService.getCurrentUser();
+        existingPlan.setUpdatedBy(currentUser.getEmail());
+        SubscriptionPlan updatedPlan = subscriptionPlanRepository.save(existingPlan);
+
+        return SubscriptionPlanMapper.toDTO(updatedPlan);
     }
 
     @Override
-    public void deleteSubscriptionPlan(Long planId) {
-
+    public void deleteSubscriptionPlan(Long planId) throws Exception {
+        SubscriptionPlan existingPlan = subscriptionPlanRepository.findById(planId).orElseThrow(
+                () -> new Exception("Plan not found")
+        );
+        subscriptionPlanRepository.delete(existingPlan);
     }
 
     @Override
     public List<SubscriptionPlanDTO> getAllSubscriptionPlan() {
-        return List.of();
+        return subscriptionPlanRepository.findAll()
+                .stream()
+                .map(SubscriptionPlanMapper::toDTO)
+                .toList();
     }
+
 }

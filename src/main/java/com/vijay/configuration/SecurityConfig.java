@@ -29,7 +29,8 @@ public class SecurityConfig {
                         SessionCreationPolicy.STATELESS
                 ))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/auth/**").permitAll()       // FIXED: auth endpoints public
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/subscription-plans/admin/**").hasRole("ADMIN")// FIXED: auth endpoints public
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/users/list").hasRole("ADMIN")// FIXED: specific rules first
                         .requestMatchers("/api/**").authenticated()         // FIXED: general rules last
