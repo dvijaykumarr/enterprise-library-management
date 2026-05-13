@@ -19,6 +19,19 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
+
+    @Override
+    public User getCurrentUserEntity() throws Exception {
+        String email = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
+
+        User user = userRepository.findByEmail(email);
+        if (user == null) throw new UserException("User not found");
+        return user;
+    }
+
+
     @Override
     public UserDto getCurrentUser() throws UserException {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();

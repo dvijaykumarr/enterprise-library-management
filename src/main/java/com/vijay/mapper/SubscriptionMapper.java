@@ -1,8 +1,6 @@
 package com.vijay.mapper;
 
 import com.vijay.modal.Subscription;
-import com.vijay.modal.SubscriptionPlan;
-import com.vijay.modal.User;
 import com.vijay.payload.dto.SubscriptionDTO;
 
 import java.time.LocalDate;
@@ -38,29 +36,30 @@ public class SubscriptionMapper {
         dto.setCancelledAt(subscription.getCancelledAt());
         dto.setCancellationReason(subscription.getCancellationReason());
         dto.setNotes(subscription.getNotes());
+        dto.setCreatedAt(subscription.getCreatedAt());
+        dto.setUpdatedAt(subscription.getUpdatedAt());
+
+        // calculated fields from entity helper methods
         dto.setDaysRemaining(subscription.getDaysRemaining());
         dto.setIsValid(subscription.isValid());
         dto.setIsExpired(subscription.isExpired());
-        dto.setCreatedAt(subscription.getCreatedAt());
-        dto.setUpdatedAt(subscription.getUpdatedAt());
 
         return dto;
     }
 
-    public static Subscription toEntity(SubscriptionDTO dto, User user, SubscriptionPlan plan) {
+    public static Subscription toEntity(SubscriptionDTO dto) {
         if (dto == null) return null;
 
-        Subscription subscription = Subscription.builder()
-                .user(user)
-                .plan(plan)
+        return Subscription.builder()
+                .id(dto.getId())
                 .startDate(dto.getStartDate() != null ? dto.getStartDate() : LocalDate.now())
                 .autoReview(dto.getAutoRenew() != null ? dto.getAutoRenew() : false)
                 .notes(dto.getNotes())
-                .isActive(true)
+                .isActive(dto.getIsActive() != null ? dto.getIsActive() : true)
                 .build();
-
-        subscription.initializeFromPlan();
-        return subscription;
+        // Note: user and plan are handled in service layer
+        // Note: planName, planCode, price, maxBooksAllowed, maxDaysForBook
+        //       are initialized from plan via initializeFromPlan() in service
     }
 
     public static List<SubscriptionDTO> toDTOList(List<Subscription> subscriptions) {

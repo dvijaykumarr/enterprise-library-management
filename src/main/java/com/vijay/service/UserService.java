@@ -11,4 +11,5 @@ public interface UserService {
 
     public UserDto getCurrentUser() throws Exception, UserException;
     public List<UserDto> getAllUsers();
+    User getCurrentUserEntity() throws Exception, UserException;
 }
