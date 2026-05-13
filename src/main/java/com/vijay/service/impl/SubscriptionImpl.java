@@ -32,12 +32,14 @@ public class SubscriptionImpl implements SubscriptionService {
 
         User user = userService.getCurrentUserEntity();
 
-        SubscriptionPlan plan = subscriptionPlanRepository.findById(subscriptionDTO.getId()).orElseThrow(
-                ()-> new Exception("plan not found!")
-        );
+        SubscriptionPlan plan = subscriptionPlanRepository.findById(subscriptionDTO.getPlanId())
+                .orElseThrow(() -> new Exception("Plan not found!"));
 
         Subscription subscription = SubscriptionMapper.toEntity(subscriptionDTO);
+        subscription.setUser(user);        // ← ADD THIS
+        subscription.setPlan(plan);
         subscription.initializeFromPlan();
+        subscription.setIsActive(false);
 
         Subscription savedSubscription = subscriptionRepository.save(subscription);
 
@@ -76,7 +78,7 @@ public class SubscriptionImpl implements SubscriptionService {
     }
 
     @Override
-    public SubscriptionDTO activeSubscription(Long subscriptionId, Long paymentId) {
+    public SubscriptionDTO activateSubscription(Long subscriptionId, Long paymentId) {
         Subscription subscription = subscriptionRepository.findById(subscriptionId)
                 .orElseThrow(
                         () -> new SubscriptionException("Subscription is not found by id")
@@ -98,7 +100,7 @@ public class SubscriptionImpl implements SubscriptionService {
     }
 
     @Override
-    public void deactivateExpiredSubscriptions(Long userId) {
+    public void deactivateExpiredSubscriptions() {
         List<Subscription> expiredSubscriptions = subscriptionRepository.findByExpiredActiveSubscriptions(LocalDate.now());
 
         for(Subscription subscription : expiredSubscriptions){

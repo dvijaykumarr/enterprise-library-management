@@ -18,6 +18,9 @@ public class SubscriptionDTO {
     @NotNull(message = "Plan ID is required")
     private Long userId;
 
+    @NotNull(message = "Plan ID is required")
+    private Long planId;
+
     private String planName;
 
     private String planCode;

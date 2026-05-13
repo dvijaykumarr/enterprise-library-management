@@ -14,11 +14,11 @@ public interface SubscriptionService {
 
     SubscriptionDTO cancelSubscription(Long subscriptionId, String reason);
 
-    SubscriptionDTO activeSubscription(Long subscriptionId, Long paymentId);
+    SubscriptionDTO activateSubscription(Long subscriptionId, Long paymentId);
 
     List<SubscriptionDTO> getAllSubscriptions(Pageable pageable);
 
-    void deactivateExpiredSubscriptions(Long userId);
+    void deactivateExpiredSubscriptions();
 
 
 
